@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Open the Add activity
+    // Method to open the Add activity/screen
     public void OpenAddActivity(){
         Intent intent = new Intent(this, AddActivity.class);
         startActivity(intent);
