@@ -8,4 +8,9 @@
     <string name="abgeschlossen">Abgeschlossen</string>
     <string name="einstellungen">Einstellungen</string>
     <string name="terminname_eingeben">Terminname eingeben</string>
+    <string-array name="prioritaet_liste">
+        <item>Niedrig</item>
+        <item>Mittel</item>
+        <item>Hoch</item>
+    </string-array>
 </resources>

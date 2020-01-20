@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //replace default action bar with customized toolbar
+        // replace default action bar with customized toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //initialize the FloatingActionButton variable
+        // initialize the FloatingActionButton variable
         add = findViewById(R.id.floatingAddButton);
         //check if button is clicked by adding a onClick function on our Button/View
         add.setOnClickListener(new View.OnClickListener() {
