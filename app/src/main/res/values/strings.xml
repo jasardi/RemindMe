@@ -8,9 +8,14 @@
     <string name="abgeschlossen">Abgeschlossen</string>
     <string name="einstellungen">Einstellungen</string>
     <string name="terminname_eingeben">Terminname eingeben</string>
+    <string name="niedrig">Niedrig</string>
+    <string name="mittel">Mittel</string>
+    <string name="hoch">Hoch</string>
+    <string name="title_alertDialog">Wähle die Priorität aus</string>
+    <string name="alarm">Alarm</string>
     <string-array name="prioritaet_liste">
-        <item>Niedrig</item>
-        <item>Mittel</item>
-        <item>Hoch</item>
+        <item>@string/niedrig</item>
+        <item>@string/mittel</item>
+        <item>@string/hoch</item>
     </string-array>
 </resources>
