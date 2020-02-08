@@ -13,6 +13,7 @@
     <string name="hoch">Hoch</string>
     <string name="title_alertDialog">Wähle die Priorität aus</string>
     <string name="alarm">Alarm</string>
+    <string name="alarm_festlegen">Alarm festlegen</string>
     <string-array name="prioritaet_liste">
         <item>@string/niedrig</item>
         <item>@string/mittel</item>

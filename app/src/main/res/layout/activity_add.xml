@@ -10,16 +10,17 @@
         android:id="@+id/InputTerminName"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:hint="@string/terminname_eingeben"
-        android:textSize="25sp"
         android:background="@null"
+        android:hint="@string/terminname_eingeben"
         android:inputType="text"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064"/>
+        app:layout_constraintVertical_bias="0.063" />
+
     <requestFocus />
 
     <Button
@@ -44,47 +45,36 @@
         app:layout_constraintStart_toEndOf="@+id/InputTerminName"
         app:layout_constraintTop_toBottomOf="@+id/buttonPrioritaet" />
 
+    <!--  add effect with ?attr/selectableItemBackground -->
+
     <Switch
         android:id="@+id/switchAlarm"
-        android:checked="false"
-        android:layout_width="350dp"
+        android:layout_width="370dp"
         android:layout_height="18dp"
+        android:layout_gravity="center_vertical"
+        android:checked="false"
         android:text="@string/alarm"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205" />
-
-    <TextView
-        android:id="@+id/textViewAlarm"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchAlarm"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <Button
-        android:id="@+id/appCompatButton2"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonAlarm"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="256dp"
-        android:text="Alarm festlegen"
-        android:foreground="?attr/selectableItemBackground"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        android:drawableStart="@drawable/ic_access_alarm_24dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/alarm_festlegen"
+        android:textAllCaps="false"
+        android:textAlignment="viewStart"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchAlarm" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

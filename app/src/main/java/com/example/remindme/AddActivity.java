@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -13,18 +14,20 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private Button PrioritaetButton;
     String[] PrioritaetListe;
     private TextView PrioritaetTextView;
     int checkedItem = 0;
     private Switch AlarmSwitch;
-    private TextView AlarmTextView;
+    private Button AlarmButton;
+    private StringBuilder ausgewaelteDatum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,24 +76,20 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
             }
         });
 
-        AlarmTextView = findViewById(R.id.textViewAlarm);
+        AlarmButton = findViewById(R.id.buttonAlarm);
         AlarmSwitch = findViewById(R.id.switchAlarm);
         AlarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    AlarmTextView.setVisibility(View.VISIBLE);
-                    if(AlarmTextView.getText() == ""){
-                        DialogFragment datePicker = new DatePickerFragment();
-                        datePicker.show(getSupportFragmentManager(), "date picker");
-                    }
+                    AlarmButton.setVisibility(View.VISIBLE);
                 }
                 else{
-                    AlarmTextView.setVisibility(View.GONE);
+                    AlarmButton.setVisibility(View.GONE);
                 }
             }
         });
-        AlarmTextView.setOnClickListener(new View.OnClickListener() {
+        AlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragment();
@@ -99,13 +98,24 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         });
     }
 
+
+    // Save the date chosen by the user in the AlarmButton text
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String ausgwaelteDatum = DateFormat.getDateInstance().format((c.getTime()));
-        AlarmTextView.setText(ausgwaelteDatum);
+        ausgewaelteDatum = new StringBuilder(DateFormat.getDateInstance(DateFormat.MEDIUM).format((c.getTime())));
+
+
+        DialogFragment timePicker = new TimePickerFragment();
+        timePicker.show(getSupportFragmentManager(), "time picker");
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        ausgewaelteDatum.append(", " + hourOfDay + ":" + minute);
+        AlarmButton.setText(ausgewaelteDatum.toString());
     }
 }
