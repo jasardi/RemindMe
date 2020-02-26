@@ -1,25 +1,42 @@
 package com.example.remindme;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "TTermine")
 public class TerminItem {
-    private int ImageResource;
-    private String TextTermin;
-    private String TextZeit;
+    @PrimaryKey(autoGenerate = true)
+    private int Id;
+    private int prioritaet;
+    private String textTermin;
+    private String bisZeit;
+    private String alarm;
 
-    public TerminItem(int imageResource, String textTermin, String textZeit){
-        ImageResource = imageResource;
-        TextTermin = textTermin;
-        TextZeit = textZeit;
+    public TerminItem(int prioritaet, String textTermin, String bisZeit) {
+        this.prioritaet = prioritaet;
+        this.textTermin = textTermin;
+        this.bisZeit = bisZeit;
     }
 
-    public int getImageResource(){
-        return ImageResource;
+    public void setId(int id) {
+        this.Id = id;
     }
+
+    public void setAlarm(String alarm) {
+        this.alarm = alarm;
+    }
+
+    public int getId(){ return Id; }
+
+    public int getPrioritaet(){ return prioritaet; }
 
     public String getTextTermin(){
-        return TextTermin;
+        return textTermin;
     }
 
-    public String getTextZeit(){
-        return TextZeit;
+    public String getBisZeit(){
+        return bisZeit;
     }
+
+    public String getAlarm() { return alarm; }
 }

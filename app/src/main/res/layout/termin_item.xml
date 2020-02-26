@@ -9,24 +9,24 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp">
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageViewPrioritaet"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="2dp"/>
         <TextView
-            android:id="@+id/textViewCardView"
+            android:id="@+id/textViewTermin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView"/>
+            android:layout_toEndOf="@+id/imageViewPrioritaet"/>
         <TextView
-            android:id="@+id/textViewCardView2"
+            android:id="@+id/textViewBisZeit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:layout_below="@+id/textViewCardView"
-            android:layout_toEndOf="@+id/imageView"/>
+            android:layout_below="@+id/textViewTermin"
+            android:layout_toEndOf="@+id/imageViewPrioritaet"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
