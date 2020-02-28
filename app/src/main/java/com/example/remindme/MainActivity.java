@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int ADD_TERMIN_REQUEST = 1;
     public static final int EDIT_TERMIN_REQUEST = 2;
 
+    private NotificationManagerCompat notificationManagerCompat;
     private FloatingActionButton add;
     private TerminViewModel terminViewModel;
 
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         // replace default action bar with customized toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         // initialize the FloatingActionButton variable
         add = findViewById(R.id.floatingAddButton);
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             //refresh list when database changes
             @Override
             public void onChanged(List<TerminItem> terminItems) {
-                Adapter.setTerminListe(terminItems);
+                Adapter.submitList(terminItems);
             }
         });
 
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(AddEditActivity.EXTRA_TERMINNAME, terminItem.getTextTermin());
                 intent.putExtra(AddEditActivity.EXTRA_BISZEIT, terminItem.getBisZeit());
                 intent.putExtra(AddEditActivity.EXTRA_PRIORITAET, terminItem.getPrioritaet());
+                intent.putExtra(AddEditActivity.EXTRA_ALARM, terminItem.getAlarm());
                 startActivityForResult(intent, EDIT_TERMIN_REQUEST);
             }
         });
@@ -114,10 +119,14 @@ public class MainActivity extends AppCompatActivity {
             String terminName = data.getStringExtra(AddEditActivity.EXTRA_TERMINNAME);
             String bisZeit = data.getStringExtra(AddEditActivity.EXTRA_BISZEIT);
             int prioritaet = data.getIntExtra(AddEditActivity.EXTRA_PRIORITAET, R.drawable.prioritaet_button_green);
-
             TerminItem terminItem = new TerminItem(prioritaet,terminName,bisZeit);
-            terminViewModel.insert(terminItem);
 
+            String alarm = data.getStringExtra(AddEditActivity.EXTRA_ALARM);
+            if(alarm != null){
+                terminItem.setAlarm(alarm);
+            }
+
+            terminViewModel.insert(terminItem);
             Toast.makeText(this, R.string.termin_gespeichert, Toast.LENGTH_SHORT).show();
         }
         else if (requestCode == EDIT_TERMIN_REQUEST && resultCode == RESULT_OK){
@@ -128,14 +137,17 @@ public class MainActivity extends AppCompatActivity {
             }
             String terminName = data.getStringExtra(AddEditActivity.EXTRA_TERMINNAME);
             String bisZeit = data.getStringExtra(AddEditActivity.EXTRA_BISZEIT);
-            int prioritaet = data.getIntExtra(AddEditActivity.EXTRA_PRIORITAET, 2131230870);
+            int prioritaet = data.getIntExtra(AddEditActivity.EXTRA_PRIORITAET, R.drawable.prioritaet_button_green);
             TerminItem terminItem = new TerminItem(prioritaet,terminName,bisZeit);
             terminItem.setId(id);
+
+            String alarm = data.getStringExtra(AddEditActivity.EXTRA_ALARM);
+            if(alarm != null){
+                terminItem.setAlarm(alarm);
+            }
+
             terminViewModel.update(terminItem);
-            Toast.makeText(this, R.string.termin_bearbeitet, Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this, R.string.termin_nicht_gespeichert, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.termin_aktualisiert, Toast.LENGTH_SHORT).show();
         }
     }
 }

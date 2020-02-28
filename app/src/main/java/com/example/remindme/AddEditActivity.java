@@ -39,6 +39,8 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
             "com.example.remindme.EXTRA_BISZEIT";
     public static final String EXTRA_PRIORITAET =
             "com.example.remindme.EXTRA_PRIORITAET";
+    public static final String EXTRA_ALARM =
+            "com.example.remindme.EXTRA_PRIORITAET";
 
     private EditText EditTextTermin;
     private Button PrioritaetButton;
@@ -143,6 +145,10 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
             DatumButton.setText(intent.getStringExtra(EXTRA_BISZEIT));
             PrioritaetButton.setBackgroundResource(intent.getIntExtra(EXTRA_PRIORITAET, R.drawable.prioritaet_button_green));
             PrioritaetButton.setTag(intent.getIntExtra(EXTRA_PRIORITAET, R.drawable.prioritaet_button_green));
+            if(intent.getStringExtra(EXTRA_ALARM) != null){
+                AlarmButton.setText(intent.getStringExtra(EXTRA_ALARM));
+                AlarmSwitch.setChecked(true);
+            }
         }
         else{
             setTitle(R.string.termin_hinzufuegen);
@@ -201,6 +207,11 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
         data.putExtra(EXTRA_TERMINNAME, terminName);
         data.putExtra(EXTRA_BISZEIT, bisZeit);
         data.putExtra(EXTRA_PRIORITAET, prioritaet);
+
+        if (!AlarmButton.getText().toString().equals(getString(R.string.alarm_festlegen)) && AlarmSwitch.isChecked()){
+            String alarm = AlarmButton.getText().toString();
+            data.putExtra(EXTRA_ALARM, alarm);
+        }
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1){

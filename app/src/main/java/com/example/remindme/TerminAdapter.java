@@ -7,14 +7,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class TerminAdapter extends RecyclerView.Adapter<TerminAdapter.TerminHolder> {
-    private List<TerminItem> terminListe = new ArrayList<>();
+public class TerminAdapter extends ListAdapter<TerminItem, TerminAdapter.TerminHolder> {
     private OnItemClickListener listener;
+
+    public TerminAdapter() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<TerminItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<TerminItem>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull TerminItem oldItem, @NonNull TerminItem newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull TerminItem oldItem, @NonNull TerminItem newItem) {
+            return oldItem.getTextTermin().equals(newItem.getTextTermin()) &&
+                    oldItem.getBisZeit().equals(newItem.getBisZeit()) &&
+                    oldItem.getPrioritaet() == (newItem.getPrioritaet());
+
+        }
+    };
 
     @NonNull
     @Override
@@ -26,24 +44,14 @@ public class TerminAdapter extends RecyclerView.Adapter<TerminAdapter.TerminHold
 
     @Override
     public void onBindViewHolder(@NonNull TerminHolder holder, int position) {
-        TerminItem currentTermin = terminListe.get(position);
+        TerminItem currentTermin = getItem(position);
         holder.ImageViewPrioritaet.setImageResource(currentTermin.getPrioritaet());
         holder.TextViewTermin.setText(currentTermin.getTextTermin());
         holder.TextViewBisZeit.setText(currentTermin.getBisZeit());
     }
 
-    @Override
-    public int getItemCount() {
-        return terminListe.size();
-    }
-
-    public void setTerminListe(List<TerminItem> terminListe) {
-        this.terminListe = terminListe;
-        notifyDataSetChanged();
-    }
-
     public TerminItem getTerminAt(int position) {
-        return terminListe.get(position);
+        return getItem(position);
     }
 
     class TerminHolder extends RecyclerView.ViewHolder {
@@ -62,7 +70,7 @@ public class TerminAdapter extends RecyclerView.Adapter<TerminAdapter.TerminHold
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(terminListe.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });

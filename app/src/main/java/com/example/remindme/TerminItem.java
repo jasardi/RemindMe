@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 public class TerminItem {
     @PrimaryKey(autoGenerate = true)
     private int Id;
+
     private int prioritaet;
     private String textTermin;
     private String bisZeit;

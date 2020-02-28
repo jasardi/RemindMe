@@ -18,10 +18,9 @@
     <string name="termin_hinzufuegen">Termin hinzufügen</string>
     <string name="termin_bearbeiten">Termin bearbeiten</string>
     <string name="termin_gespeichert">Termin gespeichert</string>
-    <string name="termin_nicht_gespeichert">Termin nicht gespeichert</string>
     <string name="zu_erledigen_bis">Zu erledigen bis</string>
     <string name="fehler_bearbeiten">Fehler: Änderungen wurden nicht gespeichert</string>
-    <string name="termin_bearbeitet">Termin bearbeitet</string>
+    <string name="termin_aktualisiert">Termin aktualisiert</string>
 
 
     <string-array name="prioritaet_liste">
