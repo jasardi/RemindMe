@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AddEditActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/AddEditTheme"/>
         <activity android:name=".MainActivity"
             android:launchMode="singleTop">
             <intent-filter>

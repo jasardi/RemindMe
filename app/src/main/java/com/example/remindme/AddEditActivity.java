@@ -45,7 +45,6 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
     private EditText EditTextTermin;
     private Button PrioritaetButton;
     String[] PrioritaetListe;
-    private TextView PrioritaetTextView;
     int checkedItem = 0;
     private Switch AlarmSwitch;
     private Button AlarmButton;
@@ -63,7 +62,6 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
         PrioritaetListe = getResources().getStringArray(R.array.prioritaet_liste);
 
         EditTextTermin = findViewById(R.id.editTextTerminName);
-        PrioritaetTextView = findViewById(R.id.textViewPrioritaet);
         PrioritaetButton = findViewById(R.id.buttonPrioritaet);
         PrioritaetButton.setBackgroundResource(R.drawable.prioritaet_button_green);
         PrioritaetButton.setTag(R.drawable.prioritaet_button_green);
@@ -86,17 +84,14 @@ public class AddEditActivity extends AppCompatActivity implements DatePickerDial
                             PrioritaetButton.setBackgroundResource(R.drawable.prioritaet_button_green);
                             PrioritaetButton.setTag(R.drawable.prioritaet_button_green);
                             checkedItem = 0;
-                            PrioritaetTextView.setText(R.string.niedrig);
                         } else if (i == 1) {
                             PrioritaetButton.setBackgroundResource(R.drawable.prioritaet_button_yellow);
                             PrioritaetButton.setTag(R.drawable.prioritaet_button_yellow);
                             checkedItem = 1;
-                            PrioritaetTextView.setText(R.string.mittel);
                         } else {
                             PrioritaetButton.setBackgroundResource(R.drawable.prioritaet_button_red);
                             PrioritaetButton.setTag(R.drawable.prioritaet_button_red);
                             checkedItem = 2;
-                            PrioritaetTextView.setText(R.string.hoch);
                         }
                         dialogInterface.dismiss();
                     }

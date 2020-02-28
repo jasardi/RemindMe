@@ -24,7 +24,6 @@ public class RemindMe extends Application {
         NotificationManager manager = getSystemService(NotificationManager.class);
         if (manager != null) {
             manager.createNotificationChannel(alarm);
-            manager.createNotificationChannel(alarm);
         }
     }
 }
